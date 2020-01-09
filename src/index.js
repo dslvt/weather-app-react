@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 
 function Cards(props){
     let days = [{day:"Mon", weather:"snowy", low_temperature:10, high_temperature:15},
-                {day:"Tue", weather:"sunny", low_temperature:8, high_temperature:12},
+                {day:"Tue", weather:"cloudy", low_temperature:8, high_temperature:12},
                 {day:"Wed", weather:"sunny", low_temperature:11, high_temperature:15},
                 {day:"Thu", weather:"lightning", low_temperature:14, high_temperature:19},
                 {day:"Fri", weather:"cloudy", low_temperature:13, high_temperature:20}];    
