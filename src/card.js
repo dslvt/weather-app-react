@@ -24,16 +24,13 @@ class Card extends React.Component {
     render(){
         const day = this.image_types[this.props.weather];
         return (
-            <div className="weather-card">
-                <span className="day-name">{this.props.day}</span>
+            <div className={this.state.hovered?"weather-card hovered-card":"weather-card"}
+                    onMouseEnter={()=>{this.setState({hovered:true})}}
+                    onMouseLeave={()=>{this.setState({hovered:false})}}>
+                <p className="day-name">{this.props.day}</p>
                 <img className="day-img"
-                        onMouseEnter={()=>{this.setState({hovered:true})}}
-                        onMouseLeave={()=>{this.setState({hovered:false})}}
                         src={this.state.hovered?day.icon:day.bw_icon}>{}</img>
-                <div className='low-high-temperature'>
-                    <span className="temprerature">{this.props.low_temperature}°</span>
-                    <span className="temprerature">{this.props.high_temperature}°</span>
-                </div>
+                <p className="temperature">{this.props.low_temperature}° {this.props.high_temperature}°</p>
             </div>
         );
     }
