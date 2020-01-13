@@ -14,8 +14,8 @@ class Card extends React.Component {
     constructor(props){
         super(props);
         this.state = {hovered:false}
-        this.image_types = {'snowy':{bw_icon:snow_bw_icon, icon:snow_icon},
-                            'cloudy':{bw_icon:cloudy_bw_icon,icon:cloudy_icon},
+        this.image_types = {'Snow':{bw_icon:snow_bw_icon, icon:snow_icon},
+                            'Clouds':{bw_icon:cloudy_bw_icon,icon:cloudy_icon},
                             'sunny':{bw_icon:sun_bw_icon,icon:sun_icon},
                             'lightning':{bw_icon:lightning_bw_icon,icon:lightning_icon}}; 
     }
