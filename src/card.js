@@ -19,7 +19,7 @@ class Card extends React.Component {
         this.image_types = {'Snow':{bw_icon:snow_bw_icon, icon:snow_icon},
                             'Clouds':{bw_icon:cloudy_bw_icon,icon:cloudy_icon},
                             'Rain': {bw_icon: rain_bw_icon, icon:rain_icon},
-                            'sunny':{bw_icon:sun_bw_icon,icon:sun_icon},
+                            'Sunny':{bw_icon:sun_bw_icon,icon:sun_icon},
                             'lightning':{bw_icon:lightning_bw_icon,icon:lightning_icon}}; 
     }
 
@@ -27,7 +27,7 @@ class Card extends React.Component {
     render(){
         let day = this.image_types[this.props.weather];
         if(day == undefined){
-            day = this.image_types['sunny'];
+            day = this.image_types['Sunny'];
         }
         return (
             <div className={this.state.hovered?"weather-card hovered-card":"weather-card"}

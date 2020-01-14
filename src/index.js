@@ -22,6 +22,7 @@ class Cards extends React.Component{
         fetch(city_link)
             .then(res => res.json())
             .then(res => {
+                console.log(res);
                 let ndays = [];
                 // let dates = res.list.map(date => new Date(date['dt']*1000));
                 for(let i = 0; i < 5; i++){
@@ -32,7 +33,6 @@ class Cards extends React.Component{
                 }
 
                 this.setState({days: ndays});
-                console.log(res);
                 });
     }
 
