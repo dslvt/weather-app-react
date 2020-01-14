@@ -1,4 +1,5 @@
 import React from 'react';
+import { Bar } from '@vx/shape';
 import './HourlyCard.css';
 
 class HourlyCard extends React.Component{

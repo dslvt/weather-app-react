@@ -17,11 +17,7 @@ const city_link = "http://api.openweathermap.org/data/2.5/forecast?id=465543&APP
 class Cards extends React.Component{
     constructor(props){
         super(props);
-        this.state = {days : [{day:"Mon", weather:"Snow", low_temperature:10, high_temperature:15},
-                    {day:"Tue", weather:"Clouds", low_temperature:8, high_temperature:12},
-                    {day:"Wed", weather:"sunny", low_temperature:11, high_temperature:15},
-                    {day:"Thu", weather:"lightning", low_temperature:14, high_temperature:19},
-                    {day:"Fri", weather:"Clouds", low_temperature:13, high_temperature:20}]};    
+        this.state = {days : []};    
         
         fetch(city_link)
             .then(res => res.json())
@@ -44,9 +40,10 @@ class Cards extends React.Component{
     render(){
         
          this.week = this.state.days.map((d) =>
-            <Card day={d.day} weather={d.weather} low_temperature={d.low_temperature} high_temperature={d.high_temperature} key={d.day}
-                onClick={event => window.location.href="/"+d.day}></Card>
-
+            <Link to={'/'+d.day} className="nolink">
+                <Card day={d.day} weather={d.weather} low_temperature={d.low_temperature} high_temperature={d.high_temperature} key={d.day}
+                    onClick={event => window.location.href="/"+d.day}></Card>
+            </Link>
         );
         return(
             <div className="cards">
