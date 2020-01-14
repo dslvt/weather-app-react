@@ -33,7 +33,6 @@ class Cards extends React.Component{
 
                 this.setState({days: ndays});
                 console.log(res);
-                this.state={days:ndays};
                 });
     }
 

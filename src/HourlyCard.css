@@ -1,1 +1,4 @@
-
+.graph-area{
+    display: flex;
+    justify-content: center;
+}
