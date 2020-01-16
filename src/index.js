@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import HourlyCard from './HourlyCard';
 
-const city_link = "http://api.openweathermap.org/data/2.5/forecast?id=465543&APPID=04d61ef19932cd9a18fc9ae6e026f150";
+const city_link = "https://api.openweathermap.org/data/2.5/forecast?id=465543&APPID=04d61ef19932cd9a18fc9ae6e026f150";
 
 class Cards extends React.Component{
     constructor(props){

@@ -15,7 +15,7 @@ import pressure_bw_icon from './img/pressure-bw.svg';
 import pressure_icon from './img/pressure.svg';
 
 
-const city_link = "http://api.openweathermap.org/data/2.5/forecast?id=465543&APPID=04d61ef19932cd9a18fc9ae6e026f150";
+const city_link = "https://api.openweathermap.org/data/2.5/forecast?id=465543&APPID=04d61ef19932cd9a18fc9ae6e026f150";
 
 class HourlyCard extends React.Component{
     constructor(props){
