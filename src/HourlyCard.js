@@ -21,31 +21,30 @@ class HourlyCard extends React.Component{
     constructor(props){
         super(props);
         this.state = {temp: [], dt: [], selected_card: 'Temperature'};
+        this.data = {Temperature: [], Pressure: [], Wind: []};
         fetch(city_link)
             .then(res => res.json())
             .then(res => {
-                let temperature = [];
+                console.log(res);
                 let dt = [];
                 for(let i=0; i<res.list.length; i++){
                     let date = new Date(res.list[i]['dt']*1000);
                     if(date.toString().slice(0, 3) == this.props.id){
-                        temperature.push(Math.round(res.list[i]['main']['temp'] - 273.15));
+                        this.data["Temperature"].push(Math.round(res.list[i]['main']['temp'] - 273.15));
+                        this.data["Pressure"].push(Math.round(res.list[i]['main']['pressure']));
+                        this.data['Wind'].push(Math.round(res.list[i]['wind']['speed']));
                         dt.push(date);
                     }
                 }
-                this.setState({temp: temperature, dt: dt});
+                this.setState({temp: this.data["Temperature"], dt: dt});
             });
     }
     change_style = (name) => {
         this.setState({selected_card: name});
+        this.setState({temp: this.data[name]});
     };
 
     render(){
-        
-        let a = this.state.temp.map(t => (
-            <a>{t}</a>
-        ));
-
         return(
             <div className="hourly-card">
                 <div className="btns">

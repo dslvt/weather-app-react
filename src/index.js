@@ -24,12 +24,18 @@ class Cards extends React.Component{
             .then(res => {
                 console.log(res);
                 let ndays = [];
-                // let dates = res.list.map(date => new Date(date['dt']*1000));
+                console.log(res);
                 for(let i = 0; i < 5; i++){
                     let item = res.list[i*8];
                     let date = new Date(item['dt']*1000);
+                    let low = 1000, high = -1000;
+                    for (let j = 0; j < 8; j++){
+                        low = Math.min(res.list[i*8+j]['main']['temp_min'], low);
+                        high = Math.max(res.list[i*8+j]['main']['temp_max'], high);
+                    }
                     ndays.push({day: date.toString().slice(0, 3), weather: item['weather'][0]['main'], 
-                        low_temperature: Math.round(item['main']['temp_min']-273.15), high_temperature: Math.round(res.list[i*8+5]['main']['temp_max']-273.15)});
+                        low_temperature: Math.round(low-273.15), 
+                        high_temperature: Math.round(high-273.15)});
                 }
 
                 this.setState({days: ndays});
