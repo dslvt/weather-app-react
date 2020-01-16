@@ -4,20 +4,18 @@
 }
 
 .hourly-card{
-
     width: 60vw;
     margin: 1em auto;
-    background-color: lavender;
 }
 
 .btns{
     display: flex;
     justify-content: center;
 }
+
 .hour-btn{
     width: 100%;
     padding-top: 1em;
-    background-color: lightcoral;
 }
 
 .hour-img{
@@ -25,7 +23,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 20%;
 }
 
 .hour-text{
@@ -38,6 +36,5 @@
 }
 
 .selected-card{
-    background-color: fuchsia;
-    border-bottom: 5px black, solid;
+    border-bottom:2px black solid;
 }

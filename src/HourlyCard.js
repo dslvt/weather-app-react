@@ -5,6 +5,7 @@ import { GlyphDot } from '@vx/glyph';
 import { LinePath } from '@vx/shape';
 import { scaleTime, scaleLinear } from '@vx/scale';
 import { curveMonotoneX, curveBasis } from '@vx/curve';
+import { AxisLeft, AxisBottom } from '@vx/axis';
 
 import thermometer_bw_icon from './img/thermometer-bw.svg';
 import thermometer_icon from './img/thermometer.svg';
@@ -19,7 +20,7 @@ const city_link = "http://api.openweathermap.org/data/2.5/forecast?id=465543&APP
 class HourlyCard extends React.Component{
     constructor(props){
         super(props);
-        this.state = {temp: [], dt: [], selected_card: 'temp'};
+        this.state = {temp: [], dt: [], selected_card: 'Temperature'};
         fetch(city_link)
             .then(res => res.json())
             .then(res => {
@@ -30,7 +31,6 @@ class HourlyCard extends React.Component{
                     if(date.toString().slice(0, 3) == this.props.id){
                         temperature.push(Math.round(res.list[i]['main']['temp'] - 273.15));
                         dt.push(date);
-                        console.log(temperature);
                     }
                 }
                 this.setState({temp: temperature, dt: dt});
@@ -49,11 +49,11 @@ class HourlyCard extends React.Component{
         return(
             <div className="hourly-card">
                 <div className="btns">
-                    <HvrButton icon={thermometer_icon} icon_bw={thermometer_bw_icon} name="Temperature" onclick={this.change_style.bind('Temperature')} 
+                    <HvrButton icon={thermometer_icon} icon_bw={thermometer_bw_icon} name="Temperature" onclick={this.change_style.bind(this, 'Temperature')} 
                         is_selected={this.state.selected_card}></HvrButton>
-                    <HvrButton icon={pressure_icon} icon_bw={pressure_bw_icon} name="Pressure" onclick={this.change_style.bind('Pressure')} 
+                    <HvrButton icon={pressure_icon} icon_bw={pressure_bw_icon} name="Pressure" onclick={this.change_style.bind(this, 'Pressure')} 
                         is_selected={this.state.selected_card}></HvrButton>
-                    <HvrButton icon={wind_icon} icon_bw={wind_bw_icon} name="Wind" onclick={this.change_style.bind('Wind')} 
+                    <HvrButton icon={wind_icon} icon_bw={wind_bw_icon} name="Wind" onclick={this.change_style.bind(this, 'Wind')} 
                         is_selected={this.state.selected_card}>></HvrButton>
                 </div>
                 <Graph dt={this.state.dt} temp={this.state.temp}></Graph> 
@@ -70,7 +70,6 @@ class HvrButton extends React.Component{
 
     render(){
         let defstyle = "hour-btn";
-        console.log(this.props.is_selected);
         if(this.props.is_selected== this.props.name){
             defstyle += ' selected-card';
         }
@@ -100,7 +99,6 @@ class Graph extends React.Component{
             data.push({date: bdata[i], value: adata[i]});
         }
 
-        console.log('data ' + data.toString());
         // accessors
         const date = d => d.date;
         const value = d => d.value;
@@ -121,21 +119,21 @@ class Graph extends React.Component{
         const primary = '#8921e0';
         const secondary = '#00f2ff';
         const contrast = '#ffffff';
-        let width = 512;
+        let width = 612;
         let height = 512; 
-        let margin = 10;
+        let margin = 20;
         const xMax = height-margin*2;
         const yMax = xMax;
 
         // update scale range to match bounds
-        xScale.range([10, xMax]);
-        yScale.range([yMax, 10]);
+        xScale.range([20, xMax]);
+        yScale.range([yMax, 20]);
 
         return(
         <div className="graph-area">
             <svg width={width} height={height}>
                 <rect x={0} y={0} width={width} height={height} fill={secondary} rx={14} />
-                <Group top={margin.top}>
+                <Group top={margin.top} transform="translate(60, 0)">
                     <LinePath
                     data={data}
                     x={x}
@@ -153,6 +151,8 @@ class Graph extends React.Component{
                     strokeWidth={3}
                     curve={curveMonotoneX}
                     />
+                    <AxisBottom top={yMax} scale={xScale} numTicks={width > 520 ? 10 : 5} />
+                    <AxisLeft scale={yScale} />
                     {data.map((d, i) => {
                     const cx = x(d);
                     const cy = y(d);
