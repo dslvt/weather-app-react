@@ -67,9 +67,9 @@ class App extends React.Component{
         return(
             <Router>
                 <Switch>
-                    <Route path="/:id" children={<SwitchRouter />}>
+                    <Route path="/weather-app-react/:id" children={<SwitchRouter />}>
                     </Route>
-                    <Route path="">
+                    <Route path="/weather-app-react/">
                         <Cards></Cards>
                     </Route>
                 </Switch>
