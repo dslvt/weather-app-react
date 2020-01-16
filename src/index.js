@@ -45,7 +45,7 @@ class Cards extends React.Component{
     render(){
         
          this.week = this.state.days.map((d) =>
-            <Link to={'/'+d.day} className="nolink">
+            <Link to={'/weather-app-react/'+d.day} className="nolink">
                 <Card day={d.day} weather={d.weather} low_temperature={d.low_temperature} high_temperature={d.high_temperature} key={d.day}
                     onClick={event => window.location.href="/"+d.day}></Card>
             </Link>
